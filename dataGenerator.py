@@ -48,10 +48,10 @@ def generateExampleSet(num, sigma, scenario, dimention = 4):
         if scenario == 1: 
             set.append([EuclideanProjectionHyperCube(u), label[i]])
         elif scenario == 2:
-            set.apend([EuclideanProjectionHyperBall(u), label[i]])
+            set.append([EuclideanProjectionHyperBall(u), label[i]])
     
     return set
 
 
-##set = generateExampleSet(20,0.3,1)
+##set = generateExampleSet(20,0.3,2)
 ##print(set)
