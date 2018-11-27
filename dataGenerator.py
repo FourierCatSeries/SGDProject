@@ -4,10 +4,12 @@ import math
 def EuclideanProjectionHyperCube(u, dimention = 4):
     x = []
     for i in range(dimention):
-        if u[i] > 0:
-            x[i] = 1
+        if u[i] > 1:
+            x.append(1)
         elif u[i]<-1:
-            x[i] = -1
+            x.append(-1)
+        else:
+            x.append(u[i])
     return x
 def EuclideanProjectionHyperBall(u, dimention = 4):
     x = []
@@ -17,9 +19,14 @@ def EuclideanProjectionHyperBall(u, dimention = 4):
     norm = math.sqrt(norm)
     if norm > 1:
         for i in range(dimention):
-            x[i] = u[i]/norm * 1.0
-    return x
+           x.append(u[i]/norm * 1.0)
+    else:
+        x = u
 
+    return x
+def extendX(x):
+    x.append(1)
+    return x
 
 
 def generateExampleSet(num, sigma, scenario, dimention = 4):
@@ -28,9 +35,9 @@ def generateExampleSet(num, sigma, scenario, dimention = 4):
     ## generate the label of the examples by the uniform distribution
     label = np.random.randint(2, size = num)
     ## change the 0 in the array to be -1 to match the scenario
-    for y in range(label):
-        if label[y] == 0:
-            label[y] = -1
+    for y in label:
+        if y == 0:
+            y = -1
     
     for i in range(num):
         mu = 0.25
@@ -39,8 +46,12 @@ def generateExampleSet(num, sigma, scenario, dimention = 4):
         u = np.random.normal(mu, sigma, 4)
         ## each training example in the set is a list in the form [x, y] where x is the Euclidean Projection based on the scenario specified
         if scenario == 1: 
-            set[i] = [EuclideanProjectionHyperCube(u), label[i]]
+            set.append([EuclideanProjectionHyperCube(u), label[i]])
         elif scenario == 2:
-            set[i] = [EuclideanProjectionHyperBall(u), label[i]]
+            set.apend([EuclideanProjectionHyperBall(u), label[i]])
     
     return set
+
+
+##set = generateExampleSet(20,0.3,1)
+##print(set)
