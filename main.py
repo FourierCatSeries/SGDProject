@@ -8,11 +8,15 @@ import matplotlib as plt
 ## in the experiment we are going to run the SGD on two sigma which are 0.05 and 0.3 for 4 training set respectively for each senario, thus we need 8 differnet training 
 ## set and two test set for both sigma for each scenario
 
-## generate test sets 
+## constant set
 N = 400
 sigma1= 0.05
 sigma2 = 0.3
 n = [50,100,500,1000]
+## the setting of rho and M please refer to the section of the report addressing the analysis of the rho-lipschitzness of the 
+## loss function.
+rho_1 = m.sqrt(5)
+M_1 = m.sqrt(5)
 
 ##---------------------------------------Scenario 1 ----------------------------------------##
 ## generate test set size of 400
@@ -44,7 +48,14 @@ excess_risk_log = []
 mean_class = []
 std_dev_class = []
 
-## train SGD and gather the result.
+## train SGD and gather the result for sigma1 = 0.05
+for sets in train_sets_sigma1:
+    w_head_current = []
+    for train_set in sets:
+        sgd = s.logSGD(train_set, test_set1_sigma1,1)
+        sgd.computeLearnRate(rho_1, M_1)
+        sgd.learn()
+        w_head_current.append(sgd.output)
 
 
 

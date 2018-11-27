@@ -3,10 +3,10 @@ import math
 import dataGenerator as d
 class logSGD:
 
-    def __init__(self, train_set, test_set, learn_rate, scenario):
+    def __init__(self, train_set, test_set, scenario):
         self.train_set = train_set
         self.test_set = test_set
-        self.learn_rate = learn_rate
+        self.learn_rate = []
         self.scenario = scenario
         self.w = [[0,0,0,0,0]]
         self.gradient = []
