@@ -25,7 +25,7 @@ def EuclideanProjectionHyperBall(u, dimention = 4):
 
     return x
 def extendX(x):
-    x.append(1)
+    x = np.append(x, 1)
     return x
 
 
@@ -35,9 +35,9 @@ def generateExampleSet(num, sigma, scenario, dimention = 4):
     ## generate the label of the examples by the uniform distribution
     label = np.random.randint(2, size = num)
     ## change the 0 in the array to be -1 to match the scenario
-    for y in label:
-        if y == 0:
-            y = -1
+    for j in range(len(label)):
+        if label[j] == 0:
+            label[j] = -1
     
     for i in range(num):
         mu = 0.25
@@ -53,5 +53,5 @@ def generateExampleSet(num, sigma, scenario, dimention = 4):
     return set
 
 
-##set = generateExampleSet(20,0.3,2)
-##print(set)
+set = generateExampleSet(20,0.3,2)
+print(set)
