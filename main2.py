@@ -15,13 +15,13 @@ sigma2 = 0.3
 n = [50,100,500,1000]
 ## the setting of rho and M please refer to the section of the report addressing the analysis of the rho-lipschitzness of the 
 ## loss function.
-rho_1 = m.sqrt(5)
-M_1 = m.sqrt(5)
+rho_2 = m.sqrt(2)
+M_2 = 1
 
-##---------------------------------------Scenario 1 ----------------------------------------##
+##---------------------------------------Scenario 2 ----------------------------------------##
 ## generate test set size of 400
-test_set1_sigma1 = d.generateExampleSet(N, sigma1, 1)
-test_set1_sigma2 = d.generateExampleSet(N, sigma2, 1)
+test_set2_sigma1 = d.generateExampleSet(N, sigma1, 2)
+test_set2_sigma2 = d.generateExampleSet(N, sigma2, 2)
 
 train_sets_sigma1 = []
 train_sets_sigma2 = []
@@ -30,8 +30,8 @@ for num in n:
     train_sets_1 = []
     train_sets_2 = []
     for i in range(30):
-        train_sets_1.append(d.generateExampleSet(num, sigma1, 1))
-        train_sets_2.append(d.generateExampleSet(num, sigma2, 1))
+        train_sets_1.append(d.generateExampleSet(num, sigma1, 2))
+        train_sets_2.append(d.generateExampleSet(num, sigma2, 2))
 
     train_sets_sigma1.append(train_sets_1)
     train_sets_sigma2.append(train_sets_2)
@@ -58,8 +58,8 @@ for sets in train_sets_sigma1:
     class_error_mean = 0
     class_std = 0
     for train_set in sets:
-        sgd = s.logSGD(train_set, test_set1_sigma1,1)
-        sgd.computeLearnRate(rho_1, M_1)
+        sgd = s.logSGD(train_set, test_set2_sigma1,2)
+        sgd.computeLearnRate(rho_2, M_2)
         sgd.learn()
         w_head_current.append(sgd.output)
         ##calculate error and loss
@@ -96,8 +96,8 @@ for sets in train_sets_sigma2:
     class_error_mean = 0
     class_std = 0
     for train_set in sets:
-        sgd = s.logSGD(train_set, test_set1_sigma2,1)
-        sgd.computeLearnRate(rho_1, M_1)
+        sgd = s.logSGD(train_set, test_set2_sigma2,2)
+        sgd.computeLearnRate(rho_2, M_2)
         sgd.learn()
         w_head_current.append(sgd.output)
         ##calculate error and loss
