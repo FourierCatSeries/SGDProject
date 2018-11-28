@@ -76,3 +76,8 @@ class logSGD:
             sum += self.class_error(self.w_head, example)
         average = sum/len(self.test_set)
         return average
+
+train = d.generateExampleSet(20, 0.05, 2)
+test = d.generateExampleSet(20, 0.05, 2)
+
+sgd = logSGD()

@@ -114,12 +114,51 @@ for sets in train_sets_sigma2:
     class_std = np.std(class_error)
     log_excess = log_loss_mean - log_loss_min
     ## store the estimate
-    min_log[1].append(log_loss_mean)
+    mean_log[1].append(log_loss_mean)
     std_dev_log[1].append(log_loss_std)
     min_log[1].append(log_loss_min)
     excess_risk_log[1].append(log_excess)
     mean_class[1].append(class_error_mean)
     std_dev_class[1].append(class_std)
+
+## output result and plot the numbers
+
+file =open('scenario1.txt')
+file.write("sigma = 0.05\n")
+for i in range(4):
+    file.wirte("n = " + str(n[i]) + ": ")
+    file.write("log: ")
+    file.write("Mean: ")
+    file.wirte(str(mean_log[0][i]) + ", ")
+    file.write("Std Dev: ")
+    file.write(str(std_dev_log[0][i]) + ", ")
+    file.write("Min : ")
+    file.write(str(min_log[0][i]) + ", ")
+    file.write("Excess: ")
+    file.write(str(excess_risk_log[0][i]) + ". ")
+    file.write("Class: ")
+    file.write("Mean: ")
+    file.write(str(mean_class[0][i]) + ", ")
+    file.write("Std Dev: ")
+    file.write(str(std_dev_class[0][i]) + ". \n")
+
+file.write("sigma = 0.3\n")
+for i in range(4):
+    file.wirte("n = " + str(n[i]) + ": ")
+    file.write("log: ")
+    file.write("Mean: ")
+    file.wirte(str(mean_log[1][i]) + ", ")
+    file.write("Std Dev: ")
+    file.write(str(std_dev_log[1][i]) + ", ")
+    file.write("Min : ")
+    file.write(str(min_log[1][i]) + ", ")
+    file.write("Excess: ")
+    file.write(str(excess_risk_log[1][i]) + ". ")
+    file.write("Class: ")
+    file.write("Mean: ")
+    file.write(str(mean_class[1][i]) + ", ")
+    file.write("Std Dev: ")
+    file.write(str(std_dev_class[1][i]) + ". \n")
 
 
 
