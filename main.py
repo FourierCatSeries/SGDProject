@@ -75,7 +75,7 @@ for sets in train_sets_sigma1:
     class_std = np.std(class_error)
     log_excess = log_loss_mean - log_loss_min
     ## store the estimate
-    min_log[0].append(log_loss_mean)
+    mean_log[0].append(log_loss_mean)
     std_dev_log[0].append(log_loss_std)
     min_log[0].append(log_loss_min)
     excess_risk_log[0].append(log_excess)
@@ -120,7 +120,6 @@ for sets in train_sets_sigma2:
     std_dev_class[1].append(class_std)
 
 ## output result and plot the numbers
-
 file = open('scenario1.txt', 'w')
 file.write("sigma = 0.05\n")
 for i in range(4):
@@ -160,10 +159,21 @@ for i in range(4):
 
 
 
+fig = plt.figure(1)
+x = n
+y1 = excess_risk_log[0]
+line1 = plt.errorbar(x, y1, yerr = std_dev_log[0], linestyle = '-', linewidth = 1)
+y2 = excess_risk_log[1]
+line2 = plt.errorbar(x, y2, yerr = std_dev_log[1], linestyle = '--', linewidth = 1)
+y3 = mean_class[0]
+line3 = plt.errorbar(x, y3, yerr = std_dev_class[0], linestyle = '-.', linewidth = 1)
+y4 = mean_class[1]
+line4 = plt.errorbar(x, y4, yerr = std_dev_class[1], linestyle = '-.', linewidth = 1)
 
-
-    
-    
+plt.legend(('logistic excess risk: sigma = 0.05', 'logistic excess risk: sigma = 0.3', 'classification error sigma = 0.05', 'classification error sigma = 0.3'), loc = 'upper right')
+plt.xlabel('n')
+plt.title('Scenario 1')
+plt.show()
 
 	
 

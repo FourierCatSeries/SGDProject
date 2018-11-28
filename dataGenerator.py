@@ -53,5 +53,5 @@ def generateExampleSet(num, sigma, scenario, dimention = 4):
     return set
 
 
-set = generateExampleSet(20,0.3,2)
-print(set)
+##set = generateExampleSet(20,0.3,2)
+##print(set)

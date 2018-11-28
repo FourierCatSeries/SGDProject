@@ -121,7 +121,7 @@ for sets in train_sets_sigma2:
 
 
 
-file =open('scenario2.txt')
+file = open('scenario2.txt', 'w')
 file.write("sigma = 0.05\n")
 for i in range(4):
     file.write("n = " + str(n[i]) + ": ")
@@ -160,6 +160,21 @@ for i in range(4):
 
     
     
+fig = plt.figure(2)
+x = n
+y1 = excess_risk_log[0]
+line1 = plt.errorbar(x, y1, yerr = std_dev_log[0], linestyle = '-', linewidth = 1)
+y2 = excess_risk_log[1]
+line2 = plt.errorbar(x, y2, yerr = std_dev_log[1], linestyle = '--', linewidth = 1)
+y3 = mean_class[0]
+line3 = plt.errorbar(x, y3, yerr = std_dev_class[0], linestyle = '-.', linewidth = 1)
+y4 = mean_class[1]
+line4 = plt.errorbar(x, y4, yerr = std_dev_class[1], linestyle = '-.', linewidth = 1)
+
+plt.legend(('logistic excess risk: sigma = 0.05', 'logistic excess risk: sigma = 0.3', 'classification error sigma = 0.05', 'classification error sigma = 0.3'), loc = 'upper right')
+plt.xlabel('n')
+plt.title('Scenario 2')
+plt.show()
 
 	
 
