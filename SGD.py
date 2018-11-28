@@ -9,6 +9,7 @@ class logSGD:
         self.learn_rate = []
         self.scenario = scenario
         self.w = [[0,0,0,0,0]]
+        self.w_head = []
         self.gradient = []
     
     def computeLearnRate(self, rho, M):
@@ -40,7 +41,38 @@ class logSGD:
         for w in self.w:
             w_head += np.array(w)
         w_head = np.divide(w_head, len(self.w))
-        return w_head
+        self.w_head = w_head
     
     def getW(self):
         return self.w
+
+    def loss_logistic(w, example):
+        y = example[1]
+        x_extend = example[0].append(1)
+        ywx = (-1.0) * y * np.multiply(w, x_extend)
+        loss = np.log(1+np.exp(ywx))
+        return loss
+
+    def log_risk_average(self):
+        sum = 0
+        for example in self.test_set:
+            loss = self.loss_logistic(self.w_head, example)
+            sum += loss
+        average = sum/len(self.test_set)
+        return average
+    
+    def class_error(w, example):
+        y = example[1]
+        x_extend = example[0].append(1)
+        product = np.multiply(w, x_extend)
+        error = 0
+        if product * y < 0: 
+            error = 1
+        return error
+    
+    def class_error_average(self):
+        sum = 0
+        for example in self.test_set:
+            sum += self.class_error(self.w_head, example)
+        average = sum/len(self.test_set)
+        return average
