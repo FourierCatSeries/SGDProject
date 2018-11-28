@@ -1,0 +1,2 @@
+sigma = 0.05
+n = 50: log: Mean: 

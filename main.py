@@ -2,7 +2,7 @@ import numpy as np
 import math as m
 import dataGenerator as d
 import SGD as s
-import matplotlib as plt
+import matplotlib.pyplot as plt
 
 
 ## in the experiment we are going to run the SGD on two sigma which are 0.05 and 0.3 for 4 training set respectively for each senario, thus we need 8 differnet training 
@@ -121,13 +121,13 @@ for sets in train_sets_sigma2:
 
 ## output result and plot the numbers
 
-file =open('scenario1.txt')
+file = open('scenario1.txt', 'w')
 file.write("sigma = 0.05\n")
 for i in range(4):
-    file.wirte("n = " + str(n[i]) + ": ")
+    file.write("n = " + str(n[i]) + ": ")
     file.write("log: ")
     file.write("Mean: ")
-    file.wirte(str(mean_log[0][i]) + ", ")
+    file.write(str(mean_log[0][i]) + ", ")
     file.write("Std Dev: ")
     file.write(str(std_dev_log[0][i]) + ", ")
     file.write("Min : ")
@@ -142,10 +142,10 @@ for i in range(4):
 
 file.write("sigma = 0.3\n")
 for i in range(4):
-    file.wirte("n = " + str(n[i]) + ": ")
+    file.write("n = " + str(n[i]) + ": ")
     file.write("log: ")
     file.write("Mean: ")
-    file.wirte(str(mean_log[1][i]) + ", ")
+    file.write(str(mean_log[1][i]) + ", ")
     file.write("Std Dev: ")
     file.write(str(std_dev_log[1][i]) + ", ")
     file.write("Min : ")
