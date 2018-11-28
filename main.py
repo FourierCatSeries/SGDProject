@@ -48,7 +48,6 @@ std_dev_class = [[], []]
 
 ## train SGD and gather the result for sigma1 = 0.05
 for sets in train_sets_sigma1:
-    w_head_current = []
     log_loss = []
     log_loss_mean = 0
     log_loss_std  = 0
@@ -61,7 +60,7 @@ for sets in train_sets_sigma1:
         sgd = s.logSGD(train_set, test_set1_sigma1,1)
         sgd.computeLearnRate(rho_1, M_1)
         sgd.learn()
-        w_head_current.append(sgd.output)
+        sgd.output()
         ##calculate error and loss
         loss = sgd.log_risk_average()
         log_loss.append(loss)
@@ -86,7 +85,6 @@ for sets in train_sets_sigma1:
 ## train SGD and gather the result for sigma2 = 0.3
 
 for sets in train_sets_sigma2:
-    w_head_current = []
     log_loss = []
     log_loss_mean = 0
     log_loss_std  = 0
@@ -99,7 +97,7 @@ for sets in train_sets_sigma2:
         sgd = s.logSGD(train_set, test_set1_sigma2,1)
         sgd.computeLearnRate(rho_1, M_1)
         sgd.learn()
-        w_head_current.append(sgd.output)
+        sgd.output()
         ##calculate error and loss
         loss = sgd.log_risk_average()
         log_loss.append(loss)

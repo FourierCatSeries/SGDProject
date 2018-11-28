@@ -80,4 +80,8 @@ class logSGD:
 train = d.generateExampleSet(20, 0.05, 2)
 test = d.generateExampleSet(20, 0.05, 2)
 
-sgd = logSGD()
+sgd = logSGD(train, test, 2)
+sgd.computeLearnRate(math.sqrt(2), 1)
+sgd.learn()
+sgd.output
+print(sgd.getW())
