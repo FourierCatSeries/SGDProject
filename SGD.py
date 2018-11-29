@@ -39,10 +39,13 @@ class logSGD:
     def output(self):
         w_head = np.array([0.0, 0.0, 0.0, 0.0, 0.0])
         for w in self.w:
-            w_head += np.array(w)
+           w_head += np.array(w)
         w_head = np.divide(w_head, len(self.w))
         self.w_head = w_head
     
+    #def output(self):
+    #   self.w_head = self.w[-1]
+
     def getW(self):
         return self.w
 

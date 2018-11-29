@@ -1,5 +1,6 @@
 import numpy as np
 import math
+import matplotlib as plt
 
 def EuclideanProjectionHyperCube(u, dimention = 4):
     x = []
@@ -53,5 +54,5 @@ def generateExampleSet(num, sigma, scenario, dimention = 4):
     return set
 
 
-##set = generateExampleSet(20,0.3,2)
+##set = generateExampleSet(30,0.3,2, dimention = 1)
 ##print(set)
